@@ -2,7 +2,6 @@
 
 Use this updated configuration with your latest Azure subscription details.
 
-```hcl
 env      = "dev"
 location = "Denmark East"
 rgname   = "denmark-east-rg"
