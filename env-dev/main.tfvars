@@ -1,45 +1,64 @@
+# Corrected Terraform Configuration
+
+Use this updated configuration with your latest Azure subscription details.
+
+```hcl
 env      = "dev"
 location = "Denmark East"
 rgname   = "denmark-east-rg"
-image_id = "/subscriptions/3f2e42e1-ca06-4a99-8c56-be8d8ba306db/resourceGroups/denmark-east-rg/providers/Microsoft.Compute/galleries/rhel10/images/1.0.0/versions/1.0.0"
+
+image_id = "/subscriptions/cde5241e-289a-449b-b2b7-4efcf2d5c83c/resourceGroups/DENMARK-EAST-RG/providers/Microsoft.Compute/galleries/rhel10/images/rhel10/versions/1.0.0"
+
+# Database Configuration
 
 db = {
-  mysql    = {}
+  mysql = {}
+
   # valkey   = {}
   # mongodb  = {}
   # rabbitmq = {}
 }
 
+# Application Servers
+
 apps = {
-  catalogue    = {
+  catalogue = {
     port = 8002
   }
-  # user         = {
+
+  # user = {
   #   port = 8001
   # }
-  # cart         = {
+
+  # cart = {
   #   port = 8003
   # }
-  # shipping     = {
+
+  # shipping = {
   #   port = 8004
   # }
-  # order        = {
+
+  # order = {
   #   port = 8007
   # }
+
   # notification = {
   #   port = 8008
   # }
-  # ratings      = {
+
+  # ratings = {
   #   port = 8006
   # }
-  # payment      = {
+
+  # payment = {
   #   port = 8005
-  #}
+  # }
 }
+
+# UI Configuration
 
 ui = {
   frontend = {
     port = 80
   }
 }
-
