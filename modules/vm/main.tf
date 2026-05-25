@@ -27,8 +27,7 @@ resource "azurerm_linux_virtual_machine" "main" {
 
   disable_password_authentication = false
 
-  secure_boot_enabled             = true
-  vtpm_enabled                    = true
+
 
   os_disk {
     caching              = "ReadWrite"
