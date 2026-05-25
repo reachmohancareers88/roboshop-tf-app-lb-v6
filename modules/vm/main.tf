@@ -6,7 +6,7 @@ resource "azurerm_network_interface" "main" {
 
   ip_configuration {
     name                          = "${var.component_name}-${var.env}-nic${count.index}"
-    subnet_id                     = "/subscriptions/3f2e42e1-ca06-4a99-8c56-be8d8ba306db/resourceGroups/denmark-east-rg/providers/Microsoft.Network/virtualNetworks/workstation-vnet/subnets/default"
+    subnet_id = "/subscriptions/cde5241e-289a-449b-b2b7-4efcf2d5c83c/resourceGroups/denmark-east-rg/providers/Microsoft.Network/virtualNetworks/controller-vnet/subnets/default"
     private_ip_address_allocation = "Dynamic"
   }
 }
@@ -18,8 +18,8 @@ resource "azurerm_linux_virtual_machine" "main" {
   resource_group_name             = data.azurerm_resource_group.main.name
   network_interface_ids           = [azurerm_network_interface.main[count.index].id]
   size                            = "Standard_B1s"
-  admin_password                  = "DevOps@123456"
-  admin_username                  = "devops"
+  admin_password                  = "Devops@123456"
+  admin_username                  = "Devops"
   source_image_id                 = var.image_id
   disable_password_authentication = false
   secure_boot_enabled             = true
@@ -57,7 +57,8 @@ resource "azurerm_lb" "main" {
   frontend_ip_configuration {
     name                          = "${var.component_name}-${var.env}"
     private_ip_address_allocation = var.lb_type == "private" ? "Dynamic" : null
-    subnet_id                     = var.lb_type == "private" ? "/subscriptions/3f2e42e1-ca06-4a99-8c56-be8d8ba306db/resourceGroups/denmark-east-rg/providers/Microsoft.Network/virtualNetworks/workstation-vnet/subnets/default" : null
+    subnet_id                     = var.lb_type == "private" ? "subnet_id = "/subscriptions/cde5241e-289a-449b-b2b7-4efcf2d5c83c/resourceGroups/denmark-east-rg/providers/Microsoft.Network/virtualNetworks/controller-vnet/subnets/default"
+" : null
     public_ip_address_id          = var.lb_type == "public" ? azurerm_public_ip.main[0].id : null
   }
 
